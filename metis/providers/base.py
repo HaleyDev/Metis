@@ -11,6 +11,7 @@ class ToolCallRequest:
     id: str
     name: str
     arguments: dict[str, Any]
+    extra_content: dict[str, Any] | None = None
     provider_specific_fields: dict[str, Any] | None = None
     function_provider_specific_fields: dict[str, Any] | None = None
 
@@ -23,6 +24,8 @@ class ToolCallRequest:
                 "arguments": json.dumps(self.arguments, ensure_ascii=False)
             }
         }
+        if self.extra_content:
+            tool_call["extra_content"] = self.extra_content
         if self.provider_specific_fields:
             tool_call["provider_specific_fields"] = self.provider_specific_fields
         if self.function_provider_specific_fields:
