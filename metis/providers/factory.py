@@ -12,4 +12,15 @@ class ProviderSnapshot:
     signature: tuple[object, ...]
 
 
-def make_provider(config: Config)
+def make_provider(config: Config) -> LLMProvider:
+    """
+    Create a provider instance from the given configuration.
+
+    Args:
+        config (Config): The configuration object.
+
+    Returns:
+        LLMProvider: The provider instance.
+    """
+    model = config.agents.defaults.model
+    
